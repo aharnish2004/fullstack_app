@@ -1,0 +1,7 @@
+_id.objectId,name.string,balance.double,phone.string
+64f1a0a0a0a0a0a0a0a0a001,Alice Johnson,120.5,+1-555-0001
+64f1a0a0a0a0a0a0a0a0a002,Bob Smith,75.0,+1-555-0002
+64f1a0a0a0a0a0a0a0a0a003,Carol Davis,0.0,+1-555-0003
+64f1a0a0a0a0a0a0a0a0a004,David Lee,300.25,+1-555-0004
+64f1a0a0a0a0a0a0a0a0a005,Eva Patel,50.0,+1-555-0005
+

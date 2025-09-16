@@ -1,0 +1,7 @@
+_id.objectId,name.string,price.double,description.string
+64f1b0b0b0b0b0b0b0b0b001,Space Invaders,2.5,Classic arcade shooter
+64f1b0b0b0b0b0b0b0b0b002,Puzzle Quest,3.0,Match and solve puzzles
+64f1b0b0b0b0b0b0b0b0b003,Racing Rush,4.0,High-speed racing game
+64f1b0b0b0b0b0b0b0b0b004,Fantasy RPG,5.0,Adventure role-playing
+64f1b0b0b0b0b0b0b0b0b005,Battle Arena,1.5,Multiplayer battle game
+
