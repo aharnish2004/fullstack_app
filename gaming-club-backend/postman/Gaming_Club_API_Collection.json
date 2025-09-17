@@ -1,0 +1,724 @@
+{
+	"info": {
+		"_postman_id": "gaming-club-api-collection",
+		"name": "Gaming Club API Collection",
+		"description": "Complete API collection for Gaming Club Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Members",
+			"item": [
+				{
+					"name": "Get All Members",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "members"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Member by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members/{{memberId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "members", "{{memberId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Member",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"phone\": \"+1-555-0123\",\n  \"balance\": 100.0,\n  \"email\": \"john.doe@example.com\",\n  \"membershipType\": \"PREMIUM\",\n  \"joinDate\": \"2025-01-17\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/members",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "members"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Member",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe Updated\",\n  \"phone\": \"+1-555-0123\",\n  \"balance\": 150.0,\n  \"email\": \"john.doe.updated@example.com\",\n  \"membershipType\": \"VIP\",\n  \"joinDate\": \"2025-01-17\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/members/{{memberId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "members", "{{memberId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Member",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members/{{memberId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "members", "{{memberId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Members",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members/search?name=John&isActive=true",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "members", "search"],
+							"query": [
+								{
+									"key": "name",
+									"value": "John"
+								},
+								{
+									"key": "isActive",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Member by Phone",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/members/phone/+1-555-0123",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "members", "phone", "+1-555-0123"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "Get All Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/games",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "games"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Game by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/games/{{gameId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "games", "{{gameId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Game",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Space Invaders\",\n  \"price\": 2.5,\n  \"description\": \"Classic arcade shooter game\",\n  \"category\": \"Arcade\",\n  \"difficulty\": \"Easy\",\n  \"maxPlayers\": 1,\n  \"imageUrl\": \"https://example.com/space-invaders.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/games",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "games"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Game",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Space Invaders Deluxe\",\n  \"price\": 3.0,\n  \"description\": \"Enhanced classic arcade shooter game\",\n  \"category\": \"Arcade\",\n  \"difficulty\": \"Medium\",\n  \"maxPlayers\": 2,\n  \"imageUrl\": \"https://example.com/space-invaders-deluxe.jpg\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/games/{{gameId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "games", "{{gameId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Game",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/games/{{gameId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "games", "{{gameId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/games/search?category=Arcade&isActive=true",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "games", "search"],
+							"query": [
+								{
+									"key": "category",
+									"value": "Arcade"
+								},
+								{
+									"key": "isActive",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Games by Price Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/games/price-range?minPrice=1.0&maxPrice=5.0",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "games", "price-range"],
+							"query": [
+								{
+									"key": "minPrice",
+									"value": "1.0"
+								},
+								{
+									"key": "maxPrice",
+									"value": "5.0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get All Transactions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "transactions"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/{{transactionId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "transactions", "{{transactionId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Transaction",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"gameId\": \"{{gameId}}\",\n  \"amount\": 2.5,\n  \"transactionType\": \"GAME_PLAY\",\n  \"notes\": \"Game play transaction\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "transactions"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions by Member",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/member/{{memberId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "transactions", "member", "{{memberId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions by Game",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/game/{{gameId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "transactions", "game", "{{gameId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transactions by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/transactions/date-range?startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "transactions", "date-range"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31T23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recharges",
+			"item": [
+				{
+					"name": "Get All Recharges",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/recharges",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "recharges"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recharge by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/recharges/{{rechargeId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "recharges", "{{rechargeId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Recharge",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"memberId\": \"{{memberId}}\",\n  \"amount\": 50.0,\n  \"paymentMethod\": \"CASH\",\n  \"notes\": \"Member recharge transaction\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/recharges",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "recharges"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recharges by Member",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/recharges/member/{{memberId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "recharges", "member", "{{memberId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Recharges by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/recharges/date-range?startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "recharges", "date-range"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31T23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Collections",
+			"item": [
+				{
+					"name": "Get All Collections",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/collections",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "collections"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Collection by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/collections/{{collectionId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "collections", "{{collectionId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Collection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"amount\": 125.5,\n  \"collectionType\": \"DAILY\",\n  \"description\": \"Daily collection from all games\",\n  \"collectedBy\": \"admin1\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/collections",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "collections"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Collections by Date Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/collections/date-range?startDate=2025-01-01T00:00:00&endDate=2025-12-31T23:59:59",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "collections", "date-range"],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-01-01T00:00:00"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-12-31T23:59:59"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Collections by Type",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/collections/type/DAILY",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "collections", "type", "DAILY"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Users",
+			"item": [
+				{
+					"name": "Get All Admin Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/admin",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "admin"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin User by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/admin/{{adminId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "admin", "{{adminId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Admin User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin1\",\n  \"password\": \"admin123\",\n  \"role\": \"ADMIN\",\n  \"email\": \"admin1@gamingclub.com\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/admin",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "admin"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"admin1\",\n  \"password\": \"admin123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/admin/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "admin", "login"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin User by Username",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/admin/username/admin1",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "admin", "username", "admin1"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Application Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/health",
+							"host": ["{{baseUrl}}"],
+							"path": ["actuator", "health"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Application Info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/info",
+							"host": ["{{baseUrl}}"],
+							"path": ["actuator", "info"]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "memberId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "gameId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "transactionId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "rechargeId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "collectionId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "adminId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

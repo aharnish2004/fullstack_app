@@ -1,0 +1,49 @@
+{
+	"id": "gaming-club-environment",
+	"name": "Gaming Club Environment",
+	"values": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "memberId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "gameId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "transactionId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "rechargeId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "collectionId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "adminId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment"
+}
