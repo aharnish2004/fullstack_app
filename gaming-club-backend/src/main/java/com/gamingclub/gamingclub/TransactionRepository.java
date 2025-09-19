@@ -5,13 +5,14 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 @Repository
-public interface TransactionRepository extends MongoRepository<Transaction, String> {
+public interface TransactionRepository extends MongoRepository<Transaction, ObjectId> {
     
-    List<Transaction> findByMemberId(String memberId);
+    List<Transaction> findByMemberId(ObjectId memberId);
     
-    List<Transaction> findByGameId(String gameId);
+    List<Transaction> findByGameId(ObjectId gameId);
     
     List<Transaction> findByDateTimeBetween(LocalDateTime startDate, LocalDateTime endDate);
     
@@ -20,5 +21,5 @@ public interface TransactionRepository extends MongoRepository<Transaction, Stri
     List<Transaction> findByStatus(String status);
     
     @Query("{'memberId': ?0, 'dateTime': {$gte: ?1, $lte: ?2}}")
-    List<Transaction> findMemberTransactionsInDateRange(String memberId, LocalDateTime startDate, LocalDateTime endDate);
+    List<Transaction> findMemberTransactionsInDateRange(ObjectId memberId, LocalDateTime startDate, LocalDateTime endDate);
 }

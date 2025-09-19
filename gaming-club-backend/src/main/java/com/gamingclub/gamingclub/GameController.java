@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import org.bson.types.ObjectId;
 
 @RestController
 @RequestMapping("/api/games")
@@ -29,7 +30,7 @@ public class GameController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Game> getGameById(@PathVariable String id) {
-        Optional<Game> game = gameRepository.findById(id);
+        Optional<Game> game = gameRepository.findById(new ObjectId(id));
         return game.map(ResponseEntity::ok)
                   .orElse(ResponseEntity.notFound().build());
     }
@@ -43,20 +44,22 @@ public class GameController {
     
     @PutMapping("/{id}")
     public ResponseEntity<Game> updateGame(@PathVariable String id, @Valid @RequestBody Game game) {
-        if (!gameRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!gameRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        game.setId(id);
+        game.setId(oid);
         Game updatedGame = gameRepository.save(game);
         return ResponseEntity.ok(updatedGame);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGame(@PathVariable String id) {
-        if (!gameRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!gameRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        gameRepository.deleteById(id);
+        gameRepository.deleteById(oid);
         return ResponseEntity.noContent().build();
     }
     

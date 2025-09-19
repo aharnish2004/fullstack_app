@@ -2,11 +2,12 @@ package com.gamingclub.gamingclub;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+import org.bson.types.ObjectId;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface GameRepository extends MongoRepository<Game, String> {
+public interface GameRepository extends MongoRepository<Game, ObjectId> {
     
     List<Game> findByNameContainingIgnoreCase(String name);
     

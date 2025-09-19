@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import org.bson.types.ObjectId;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -24,7 +25,7 @@ public class AdminUserController {
     
     @GetMapping("/{id}")
     public ResponseEntity<AdminUser> getAdminUserById(@PathVariable String id) {
-        Optional<AdminUser> adminUser = adminUserRepository.findById(id);
+        Optional<AdminUser> adminUser = adminUserRepository.findById(new ObjectId(id));
         return adminUser.map(ResponseEntity::ok)
                        .orElse(ResponseEntity.notFound().build());
     }
@@ -38,20 +39,22 @@ public class AdminUserController {
     
     @PutMapping("/{id}")
     public ResponseEntity<AdminUser> updateAdminUser(@PathVariable String id, @Valid @RequestBody AdminUser adminUser) {
-        if (!adminUserRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!adminUserRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        adminUser.setId(id);
+        adminUser.setId(oid);
         AdminUser updatedAdminUser = adminUserRepository.save(adminUser);
         return ResponseEntity.ok(updatedAdminUser);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdminUser(@PathVariable String id) {
-        if (!adminUserRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!adminUserRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        adminUserRepository.deleteById(id);
+        adminUserRepository.deleteById(oid);
         return ResponseEntity.noContent().build();
     }
     

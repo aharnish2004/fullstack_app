@@ -2,6 +2,7 @@ package com.gamingclub.gamingclub;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.types.ObjectId;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -16,7 +17,7 @@ import lombok.AllArgsConstructor;
 public class Game {
     
     @Id
-    private String id;
+    private ObjectId id;
     
     @NotBlank(message = "Name is required")
     private String name;

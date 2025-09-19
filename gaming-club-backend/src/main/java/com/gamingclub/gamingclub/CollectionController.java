@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import org.bson.types.ObjectId;
 
 @RestController
 @RequestMapping("/api/collections")
@@ -25,7 +26,7 @@ public class CollectionController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Collection> getCollectionById(@PathVariable String id) {
-        Optional<Collection> collection = collectionRepository.findById(id);
+        Optional<Collection> collection = collectionRepository.findById(new ObjectId(id));
         return collection.map(ResponseEntity::ok)
                         .orElse(ResponseEntity.notFound().build());
     }
@@ -42,20 +43,22 @@ public class CollectionController {
     
     @PutMapping("/{id}")
     public ResponseEntity<Collection> updateCollection(@PathVariable String id, @Valid @RequestBody Collection collection) {
-        if (!collectionRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!collectionRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        collection.setId(id);
+        collection.setId(oid);
         Collection updatedCollection = collectionRepository.save(collection);
         return ResponseEntity.ok(updatedCollection);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCollection(@PathVariable String id) {
-        if (!collectionRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!collectionRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        collectionRepository.deleteById(id);
+        collectionRepository.deleteById(oid);
         return ResponseEntity.noContent().build();
     }
     

@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import org.bson.types.ObjectId;
 
 @RestController
 @RequestMapping("/api/recharges")
@@ -33,7 +34,7 @@ public class RechargeController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Recharge> getRechargeById(@PathVariable String id) {
-        Optional<Recharge> recharge = rechargeRepository.findById(id);
+        Optional<Recharge> recharge = rechargeRepository.findById(new ObjectId(id));
         return recharge.map(ResponseEntity::ok)
                       .orElse(ResponseEntity.notFound().build());
     }
@@ -57,26 +58,28 @@ public class RechargeController {
     
     @PutMapping("/{id}")
     public ResponseEntity<Recharge> updateRecharge(@PathVariable String id, @Valid @RequestBody Recharge recharge) {
-        if (!rechargeRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!rechargeRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        recharge.setId(id);
+        recharge.setId(oid);
         Recharge updatedRecharge = rechargeRepository.save(recharge);
         return ResponseEntity.ok(updatedRecharge);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteRecharge(@PathVariable String id) {
-        if (!rechargeRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!rechargeRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        rechargeRepository.deleteById(id);
+        rechargeRepository.deleteById(oid);
         return ResponseEntity.noContent().build();
     }
     
     @GetMapping("/member/{memberId}")
     public ResponseEntity<List<Recharge>> getRechargesByMember(@PathVariable String memberId) {
-        List<Recharge> recharges = rechargeRepository.findByMemberId(memberId);
+        List<Recharge> recharges = rechargeRepository.findByMemberId(new ObjectId(memberId));
         return ResponseEntity.ok(recharges);
     }
     
@@ -97,7 +100,7 @@ public class RechargeController {
             @RequestParam String endDate) {
         LocalDateTime start = LocalDateTime.parse(startDate);
         LocalDateTime end = LocalDateTime.parse(endDate);
-        List<Recharge> recharges = rechargeRepository.findMemberRechargesInDateRange(memberId, start, end);
+        List<Recharge> recharges = rechargeRepository.findMemberRechargesInDateRange(new ObjectId(memberId), start, end);
         return ResponseEntity.ok(recharges);
     }
 }

@@ -2,6 +2,7 @@ package com.gamingclub.gamingclub;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.types.ObjectId;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import lombok.AllArgsConstructor;
 public class AdminUser {
     
     @Id
-    private String id;
+    private ObjectId id;
     
     @NotBlank(message = "Username is required")
     private String username;

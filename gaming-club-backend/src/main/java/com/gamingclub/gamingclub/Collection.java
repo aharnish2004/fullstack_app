@@ -2,6 +2,7 @@ package com.gamingclub.gamingclub;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.types.ObjectId;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 public class Collection {
     
     @Id
-    private String id;
+    private ObjectId id;
     
     @NotNull(message = "Date is required")
     private LocalDateTime date;

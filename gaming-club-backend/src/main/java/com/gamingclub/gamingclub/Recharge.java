@@ -2,6 +2,7 @@ package com.gamingclub.gamingclub;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.types.ObjectId;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
@@ -16,10 +17,10 @@ import java.time.LocalDateTime;
 public class Recharge {
     
     @Id
-    private String id;
+    private ObjectId id;
     
     @NotNull(message = "Member ID is required")
-    private String memberId;
+    private ObjectId memberId;
     
     @NotNull(message = "Amount is required")
     @Positive(message = "Amount must be positive")

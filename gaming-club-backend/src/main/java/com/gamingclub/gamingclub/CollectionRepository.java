@@ -5,9 +5,10 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 @Repository
-public interface CollectionRepository extends MongoRepository<Collection, String> {
+public interface CollectionRepository extends MongoRepository<Collection, ObjectId> {
     
     List<Collection> findByDateBetween(LocalDateTime startDate, LocalDateTime endDate);
     

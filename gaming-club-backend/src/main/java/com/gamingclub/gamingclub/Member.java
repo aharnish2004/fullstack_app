@@ -2,6 +2,7 @@ package com.gamingclub.gamingclub;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.types.ObjectId;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -28,7 +29,7 @@ public class Member {
     
     // Additional fields for gaming club
     private String email;
-    private String membershipType = "REGULAR";
-    private String joinDate;
-    private Boolean isActive = true;
+    private String membershipType;
+    private Object joinDate;
+    private Boolean isActive;
 }

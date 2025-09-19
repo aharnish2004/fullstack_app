@@ -4,9 +4,10 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
+import org.bson.types.ObjectId;
 
 @Repository
-public interface AdminUserRepository extends MongoRepository<AdminUser, String> {
+public interface AdminUserRepository extends MongoRepository<AdminUser, ObjectId> {
     
     Optional<AdminUser> findByUsername(String username);
     

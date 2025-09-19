@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import org.bson.types.ObjectId;
 
 @RestController
 @RequestMapping("/api/transactions")
@@ -36,7 +37,7 @@ public class TransactionController {
     
     @GetMapping("/{id}")
     public ResponseEntity<Transaction> getTransactionById(@PathVariable String id) {
-        Optional<Transaction> transaction = transactionRepository.findById(id);
+        Optional<Transaction> transaction = transactionRepository.findById(new ObjectId(id));
         return transaction.map(ResponseEntity::ok)
                         .orElse(ResponseEntity.notFound().build());
     }
@@ -51,32 +52,34 @@ public class TransactionController {
     
     @PutMapping("/{id}")
     public ResponseEntity<Transaction> updateTransaction(@PathVariable String id, @Valid @RequestBody Transaction transaction) {
-        if (!transactionRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!transactionRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        transaction.setId(id);
+        transaction.setId(oid);
         Transaction updatedTransaction = transactionRepository.save(transaction);
         return ResponseEntity.ok(updatedTransaction);
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTransaction(@PathVariable String id) {
-        if (!transactionRepository.existsById(id)) {
+        ObjectId oid = new ObjectId(id);
+        if (!transactionRepository.existsById(oid)) {
             return ResponseEntity.notFound().build();
         }
-        transactionRepository.deleteById(id);
+        transactionRepository.deleteById(oid);
         return ResponseEntity.noContent().build();
     }
     
     @GetMapping("/member/{memberId}")
     public ResponseEntity<List<Transaction>> getTransactionsByMember(@PathVariable String memberId) {
-        List<Transaction> transactions = transactionRepository.findByMemberId(memberId);
+        List<Transaction> transactions = transactionRepository.findByMemberId(new ObjectId(memberId));
         return ResponseEntity.ok(transactions);
     }
     
     @GetMapping("/game/{gameId}")
     public ResponseEntity<List<Transaction>> getTransactionsByGame(@PathVariable String gameId) {
-        List<Transaction> transactions = transactionRepository.findByGameId(gameId);
+        List<Transaction> transactions = transactionRepository.findByGameId(new ObjectId(gameId));
         return ResponseEntity.ok(transactions);
     }
     
@@ -97,7 +100,7 @@ public class TransactionController {
             @RequestParam String endDate) {
         LocalDateTime start = LocalDateTime.parse(startDate);
         LocalDateTime end = LocalDateTime.parse(endDate);
-        List<Transaction> transactions = transactionRepository.findMemberTransactionsInDateRange(memberId, start, end);
+        List<Transaction> transactions = transactionRepository.findMemberTransactionsInDateRange(new ObjectId(memberId), start, end);
         return ResponseEntity.ok(transactions);
     }
 }
